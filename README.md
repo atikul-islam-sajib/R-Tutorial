@@ -1,6 +1,6 @@
 # R-Tutorial
 
-## Basic content would br covered, for example
+## Basic contents would be covered, for example
 1. condition
 2. Iteration
 3. function
