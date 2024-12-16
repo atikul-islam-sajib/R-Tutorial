@@ -1,117 +1,80 @@
-# Define a simple function
-printHello <- function(){
-  print("Hello world")
-}
-printHello()
+# Create a normal function
+displayFunction <- function(){print("This function is created for printing Hello World")}
+displayFunction()
 
-# Define a function with return 
-printHello <- function(){
-  return ("Hello World")
-}
-print(printHello())
+# Create a function that will return
+displayFunction <- function(){return ("This is the function that is returning Hello World")}
+displayFunction()
 
-# Define the function with arguments
-addTwoNumbers <- function(number1, number2){
-  return (number1 + number2)
-}
+# Create a function that has two arguments
+addTwoNumbers <- function(number1, number2){return (number1 + number2)}
+print(addTwoNumbers(number1 = 10, number2 = 20))
 
-print(addTwoNumbers(10, 20))
-
-# Define the function with default arguments
-addTwoNumbers <- function(number1 = 10, number2 = 20){
-  return (number1 + number2)
-}
-
+# Create a function that has two default arguments
+addTwoNumbers <- function(number1 = 10, number2 = 20){return (number1 + number2)}
 print(addTwoNumbers())
-print(addTwoNumbers(0, 0))
-print(addTwoNumbers(100, 100))
+print(addTwoNumbers(20))
+print(addTwoNumbers(10, 10))
+print(addTwoNumbers(c(1:10)))
+print(addTwoNumbers(c(1, 2, 3), 10))
 
-# Pass the vector in the function
-addNumbers <- function(number1 = 10, number2 = 20){
-  return (number1 + number2)
+# Create a function that is returning multiple elements
+returnMultiple <- function(vector){return (c(sum(vector), mean(vector), median(vector), sd(vector), var(vector)))}
+print(returnMultiple(1:10))
+
+# Create a function that would return the lower to upper
+toUpperCase <- function(string = "Hello World"){return (toupper(string))}
+print(toUpperCase())
+print(toUpperCase(string = "Radit Rahaman"))
+
+# Create a nested function
+convertCharacter <- function(value = 124){
+  if (is.numeric(value)){
+    value <- as.character(value)
+    charCount <- function(){return (nchar(value))}
+    return (charCount)
+  }else{"This is not possible as value should be numric"}
 }
+char <- convertCharacter(value = 123.10)
+print(char())
 
-print(addNumbers(number1 = c(10, 20, 30)))
-print(addNumbers(number1 = 1:10, number2 = 1:10))
-
-# Nested function
-outerFunction <- function(number1 = 10){
-  innerFunction <- function(number2 = 20){
-    return (number1 * number2)
-  }
-  return (innerFunction)
+# Create a function that would return the factorial
+computeFactorial <- function(number = 10){
+  if (is.numeric(number)){
+    totalFactoral <- 1
+    for (value in 1:number){
+      totalFactoral <- totalFactoral * value
+    }
+    return (totalFactoral)
+  }else{return ("Number should be in the format of numeric")}
 }
+print(computeFactorial(5))
+print(computeFactorial(10))
 
-inner <- outerFunction(number1 = 10)
-print(inner(number2 = 20))
-
-# Calculate the factorial using function
-computeFactorial <- function(number = 1){
-  sumFactoral <- 1
-  for (value in 1:number){
-    sumFactoral <- sumFactoral * value 
-  }
-  
-  return (sumFactoral)
-}
-
-print(computeFactorial(number = 4))
-
-# Can I return multiple value as return, Yes just use "vector"/list/matrix....
-mulReturn <- function(number1 = 10, number2 = 20){
-  return (c(number1 + number2, number1 - number2, number1 * number2, number1 / number2))
-}
-
-print(mulReturn(number1 = 10, number2 = 20))
-print(mulReturn(number1 = 1:10, number2 = 5))
-
-
-
-# Find the Armstrong number
-findArmstrong <- function(value = 1234){
-  isArmstrong <- FALSE
-  convertCharacter <- as.character(value)
-  totalCharacters <- nchar(convertCharacter)
-  totalValue <- 0
-  
-  for(value in strsplit(convertCharacter, "")){
-    value <- as.numeric(value)
-    totalValue <- totalValue + value ^ (totalCharacters)
-  }
-  return (sum(totalValue))
-  
-}
-value <- findArmstrong(value = 1634)
-if (value == 1634){
-  print("TRUE")
-}else{
-  print(FALSE)
-}
-
-# Do this in the while loop
-
-findArmstrong <- function(value = 123){
-  totalSum <- 0
-  realValue <- value
-  convertCharacter <- as.character(value)
-  magnitude <- nchar(convertCharacter)
-  
-  while(value != 0){
-    check <- value %% 10
-    value <- as.integer(value / 10)
-    totalSum <- totalSum + check ^ (magnitude)
-  }
-  if (totalSum == realValue){
-    return ("This is Armstrong number")
+# Create the calculator 
+simpleCalculator <- function(type = "+", value1 = 1, value2 = 2){
+  if (type == "+"){
+    return (value1 + value2)
+  }else if (type == "-"){
+    return (value1 - value2)
+  }else if (type == "*"){
+    return (value1 * value2)
+  }else if (type == "/"){
+    if (value2 == 0){
+      return ("Not Possible")
+    }else{
+      return (value1/value2)
+    }
+  }else if (type == "%"){
+    return (value1 %% value2)
   }else{
-     return ("This is not Armstrong number")
+    return ("Type should be either +, -, *, /, %")
   }
 }
 
-print(findArmstrong(value = 1634))
-
-
-#################################################
-# Condition, Iteration(loop + While), Function  #
-#################################################
-
+print(simpleCalculator(value1 = 10, value2 = 20, type = "+"))
+print(simpleCalculator(value1 = 10, value2 = 20, type = "-"))
+print(simpleCalculator(value1 = 10, value2 = 20, type = "*"))
+print(simpleCalculator(value1 = 10, value2 = 20, type = "/"))
+print(simpleCalculator(value1 = 10, value2 = 20, type = "%"))
+print(simpleCalculator(value1 = 10, value2 = 0, type = "/"))
